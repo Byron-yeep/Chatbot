@@ -6,10 +6,9 @@ typedef struct {
   char *input;
   int numResp;
   char *responses[MAX_RESP];
-  int lastindex;
+  int lastIndex;
 } record;
 
 record *commSen;
 int commSenNum;
 char *sInput,*sPreviousInput,*sResponse;
-int nselection, prevnselection;

@@ -13,7 +13,7 @@ int main(char *argv[]) {
 
   sInput=(char *)malloc(sizeof(char)*64);
   sPreviousInput= (char *)malloc(sizeof(char)*64);
-  int comIndex;
+  int index;
      
   printf("BOT >HI");
   while(1){
@@ -26,7 +26,8 @@ int main(char *argv[]) {
       printf("BYE\n");
       return 0;
     }   
-    comIndex = find_match(sInput);   
-    output(comIndex);
+    index = find_match(sInput);   
+    output(index);
+	strcpy(sPreviousInput, sInput);
   }
 }

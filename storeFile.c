@@ -15,7 +15,7 @@ void commRead() {
   fscanf(fp,"%d\n",&commSenNum);
   commSen= (record *)malloc(sizeof(record) * commSenNum);
 	
-  for(i = 0; i< commSenNum;i++){
+  for(i = 0; i< commSenNum;i++ ){
     fscanf(fp,"%d ",&commSen[i].numResp );
 	commSen[i].lastindex = commSen[i].numResp;
 	  
