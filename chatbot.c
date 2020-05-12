@@ -9,11 +9,13 @@
 #include "storeFile.h"
 
 int main(char *argv[]) {
+  //clear terminal
+  system("clear");
   commRead();
 
   sInput=(char *)malloc(sizeof(char)*64);
   sPreviousInput= (char *)malloc(sizeof(char)*64);
-  int index;
+  int randm, index;
      
   printf("BOT >HI");
   while(1){
@@ -27,7 +29,12 @@ int main(char *argv[]) {
       return 0;
     }   
     index = find_match(sInput);   
-    output(index);
-	strcpy(sPreviousInput, sInput);
+	if(index == -1){
+      inputanalyze();  
+	}
+	else {
+      output(index);
+	  strcpy(sPreviousInput, sInput);
+	}
   }
 }

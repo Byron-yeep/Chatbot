@@ -11,8 +11,35 @@ void input() {
   printf("\nUSER >");
   //to avoid input is greater than the length of sInput
   fgets(sInput, 30, stdin);
+  trim(sInput);
   printf("\nBOT >");
   upper(sInput);
+}
+
+//to delete space to gain valid words
+char *trim(char *str) {
+  int beg = 0, end = strlen(str)-1;
+  //begin spaces
+  while(1){
+    if(str[0] == ' '){
+      str[0] = '\0';
+      str = &str[1];
+    }
+    else break;
+  }
+  //end spaces
+  if(str[end] == '\n') {
+    str[end] = '\0';
+    end --;
+  }
+  while(1){
+    if(str[end] == ' '){
+      str[end] = '\0';
+      end --;     
+    }
+    else break;
+  }
+  return str;
 }
 
 //convert all input into upper case to easily control
@@ -40,7 +67,6 @@ int output(int index) {
     if(commSen[index].numResp > 1 && choice ==  commSen[index].lastIndex) {
         choice = (choice + 1) % MAX_RESP;
     }
-    commSen[index].lastIndex = choice;
     printf("%s", commSen[index].responses[choice]);
   }
   return 0;

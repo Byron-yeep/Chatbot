@@ -26,3 +26,15 @@ int findMatch(char *input) {
   return result;
 }
 
+//to make marches more precise
+char *addSpace(char *str) {
+  int i = 0;
+  char *newstr = (char *)malloc(sizeof(char ) * 20);
+  for(; i<strlen(str); i++) {
+    newstr[i]= str[i];
+  }
+  newstr[i+1]=' ';
+  return newstr;
+}
+
+void inputanalyze() {};
