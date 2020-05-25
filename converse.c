@@ -4,10 +4,11 @@
 #include <string.h>
 
 #include "struct.h"
-#include "inOut.h"
+#include "converse.h"
 #include "storeFile.h"
  
-void input() { 
+//make conversations
+void input() {
   printf("\nUSER >");
   //to avoid input is greater than the length of sInput
   fgets(sInput, 30, stdin);
@@ -54,20 +55,16 @@ void upper(char *str) {
 }
 
 //fix the first few numbers at spicific inputs like sign on and no inputs to make it easier to handle
-int output(int index) {
-  int choice, prevchoice;
+void output(int index) {
+  int choice;
   if(strcmp(sPreviousInput, sInput) == 0) {
-    printf("YOU'RE REPREATINING YOURSELF");
+    printf("YOU'RE REPREATINING YOURSELF, COULD WE TALK SOMETHING ELSE : )");
   }
   else if (index == -1) {
     printf("I DON'T UNDERSTAND");
   }
   else {
-    choice = rand() % commSen[index].numResp;
-    if(commSen[index].numResp > 1 && choice ==  commSen[index].lastIndex) {
-        choice = (choice + 1) % MAX_RESP;
-    }
+    choice = random() % commSen[index].numResp;
     printf("%s", commSen[index].responses[choice]);
   }
-  return 0;
 }

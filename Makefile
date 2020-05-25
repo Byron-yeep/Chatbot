@@ -4,7 +4,7 @@
 EXE_DIR = .
 EXE = $(EXE_DIR)/chatbot
 
-SRC= chatbot.c storeFile.c inOut.c match.c
+SRC= chatbot.c storeFile.c converse.c match.c
 
 # generic build details
 
@@ -30,3 +30,8 @@ clean:
 	rm -f $(OBJ) $(EXE)
 
 # dependencies
+
+chatbot.o:  chatbot.c struct.h storeFile.h converse.h match.h
+storeFile.o: storeFile.c struct.h storeFile.h
+converse.o: converse.c struct.h converse.h
+match.o: match.c struct.h match.h

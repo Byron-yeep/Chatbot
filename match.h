@@ -1,4 +1,3 @@
 
-int find_match(char *input);
-char *addSpace(char *str);
-void inputanalyze();
+int findMatch(char *input);
+char *addSpace(char * str);

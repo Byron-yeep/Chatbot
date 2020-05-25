@@ -8,7 +8,8 @@
 
 //for finding a match according to input
 int findMatch(char *input) {
-  int i = 0, result = -1;
+  int i = 0;
+  int result = -1;
   char *temp1, *temp2;
   temp1 = addSpace(input);
 
@@ -37,4 +38,6 @@ char *addSpace(char *str) {
   return newstr;
 }
 
-void inputanalyze() {};
+
+
+
