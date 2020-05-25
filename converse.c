@@ -7,20 +7,20 @@
 #include "converse.h"
 #include "storeFile.h"
  
-//make conversations
+// Get user's sentences
 void input() {
   printf("\nUSER >");
-  //to avoid input is greater than the length of sInput
+  // Avoid input is greater than the length of sInput
   fgets(sInput, 30, stdin);
   trim(sInput);
   printf("\nBOT >");
   upper(sInput);
 }
 
-//to delete space to gain valid words
+// Delete space to gain valid words
 char *trim(char *str) {
   int beg = 0, end = strlen(str)-1;
-  //begin spaces
+  // Begin spaces
   while(1){
     if(str[0] == ' '){
       str[0] = '\0';
@@ -28,7 +28,7 @@ char *trim(char *str) {
     }
     else break;
   }
-  //end spaces
+  // End spaces
   if(str[end] == '\n') {
     str[end] = '\0';
     end --;
@@ -43,7 +43,7 @@ char *trim(char *str) {
   return str;
 }
 
-//convert all input into upper case to easily control
+// Convert all input into upper case to easily control
 void upper(char *str) {
   int i = 0;
   for(; i < strlen(str); i ++ ) {
@@ -54,7 +54,7 @@ void upper(char *str) {
   }
 }
 
-//fix the first few numbers at spicific inputs like sign on and no inputs to make it easier to handle
+// Accord to judgement to print some responces from database
 void output(int index) {
   int choice;
   if(strcmp(sPreviousInput, sInput) == 0) {

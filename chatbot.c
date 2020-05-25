@@ -9,7 +9,7 @@
 #include "storeFile.h"
 
 int main(char *argv[]) {
-  //clear terminal
+  // Clear terminal
   system("clear");
   commRead();
   //tempRead();
@@ -25,6 +25,7 @@ int main(char *argv[]) {
       printf("SORRY, DID I MAKE YOU ALONE?");
       continue;
     }
+	// Enter "BYE" to end the chat
     else if(strncmp(sInput, "BYE", 3) == 0) {
       printf("BYE\n");
       return 0;
