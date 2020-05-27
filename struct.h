@@ -1,23 +1,39 @@
 
-#define MAX 128
-#define MAX_RESP 100
+#define MAX 999
+#define MAX_RESP 50
 
+// Data structure 
 typedef struct {
+  // Number of total questions
+  int num;
+  // Conversation
   char *input;
-  int numResp;
   char *responses[MAX_RESP];
-  int lastIndex;
-} record;
+} dBase;
 
-record *commSen;
+// Record responses and their times
+typedef struct {
+  int times;
+  char *responses;
+} tempResp;
+
+// Temp structure 
+typedef struct {
+  // Number of total questions
+  int num;
+  // Conversation
+  char *input;
+  tempResp *tResponses;
+} tBase;
+
+// database
+dBase *commSen;
 int commSenNum;
 
-char *sInput, *sPreviousInput;
+// tempbase
+tBase *tempSen;
+int tempSenNum;
 
-//categwords categinput, categoutput, categprev;
+char *userInput, *preUserInput;
 
-
-int WordDatasize[9];
-char **points[9], *tempOut;
-int a[MAX*9][MAX*9];
 

@@ -9,16 +9,18 @@
  
 // Get user's sentences
 void input() {
+
   printf("\nUSER >");
-  // Avoid input is greater than the length of sInput
-  fgets(sInput, 30, stdin);
-  trim(sInput);
+  // Avoid input is greater than the length of userInput
+  fgets(userInput, 30, stdin);
+  trim(userInput);
   printf("\nBOT >");
-  upper(sInput);
+  upper(userInput);
 }
 
 // Delete space to gain valid words
 char *trim(char *str) {
+
   int beg = 0, end = strlen(str)-1;
   // Begin spaces
   while(1){
@@ -45,6 +47,7 @@ char *trim(char *str) {
 
 // Convert all input into upper case to easily control
 void upper(char *str) {
+
   int i = 0;
   for(; i < strlen(str); i ++ ) {
     if ( str[i] >= 'a' && str[i] <= 'z' ) {
@@ -55,16 +58,16 @@ void upper(char *str) {
 }
 
 // Accord to judgement to print some responces from database
-void output(int index) {
-  int choice;
-  if(strcmp(sPreviousInput, sInput) == 0) {
+int output(int index) {
+
+  // Final choice from responces
+  int choice = 0;
+  if(strcmp(preUserInput, userInput) == 0) {
     printf("YOU'RE REPREATINING YOURSELF, COULD WE TALK SOMETHING ELSE : )");
   }
-  else if (index == -1) {
-    printf("I DON'T UNDERSTAND");
-  }
   else {
-    choice = random() % commSen[index].numResp;
+    choice = random() % commSen[index].num;
     printf("%s", commSen[index].responses[choice]);
   }
+  return choice;
 }

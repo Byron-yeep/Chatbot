@@ -1,4 +1,6 @@
  
 void commRead();
-void tempWrite();
+void commWrite();
 void tempRead();
+void tempWrite();
+void freeAll();

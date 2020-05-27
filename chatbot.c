@@ -9,36 +9,49 @@
 #include "storeFile.h"
 
 int main(char *argv[]) {
+
   // Clear terminal
   system("clear");
   commRead();
-  //tempRead();
+  tempRead();
 
-  sInput = (char *)malloc(sizeof(char)*64);
-  sPreviousInput = (char *)malloc(sizeof(char)*64);
-  int randm, index;
-     
-  printf("BOT >HI");
+  userInput = (char *)malloc(sizeof(char)*64);
+  preUserInput = (char *)malloc(sizeof(char)*64);
+  
+  int index;
+  printf("(ENTER \"BYE\" TO END THE CONVERSATION)\n\nBOT >HI");
+  input();
+
   while(1) {
-    input();
-    if (strcmp(sInput, "\0") == 0) {
+    if (strcmp(userInput, "\0") == 0) {
       printf("SORRY, DID I MAKE YOU ALONE?");
       continue;
     }
 	// Enter "BYE" to end the chat
-    else if(strncmp(sInput, "BYE", 3) == 0) {
+    else if(strncmp(userInput, "BYE", 3) == 0) {
       printf("BYE\n");
       return 0;
     }
-    
-    index = findMatch(sInput);   
+    int choice;
+    index = commMatch(userInput);   
     if(index == -1){
-	  printf("HAHA, I AM TOO YOUNG TO UNDERSTAND YOUR REAL EXPRESSIONS?");
+	  printf("HAHA, I AM TOO YOUNG TO UNDERSTAND YOUR REAL EXPRESSIONS\n     ASK ME SOMETHING SIMPLE :)");
     }
-    else{  
-      output(index);
-	  strcpy(sPreviousInput, sInput);
+    else{
+      choice = output(index);
+	  strcpy(preUserInput, userInput);
     }
+
+    input();
+    // keep the conversation of this round
+    if(index != -1) {	  
+      keepCache(index, choice);
+	}
   }
+  
+  tempWrite();
+  commWrite();
+  
+  freeAll();
 }
   
