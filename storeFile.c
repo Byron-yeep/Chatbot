@@ -14,18 +14,17 @@ void commRead() {
   fp = fopen( "database.txt", "r" );
 
   fscanf(fp,"%d\n", &commSenNum);
-  commSen= (dBase *)malloc(sizeof(dBase) * commSenNum * 1.5);
+  commSen= (dBase *)malloc(sizeof(dBase) * commSenNum);
 
   int i,j;
-  for(i = 0; i < commSenNum;i ++) {
+  for(i = 0; i < commSenNum; i ++) {
     fscanf(fp,"%d ", &commSen[i].num );
-	  
+	// Questions  
     commSen[i].input = (char *)malloc(sizeof(char) * 64);
-	// Questions
     fscanf(fp,"%[^\n]s\n", commSen[i].input);
     fgetc(fp);
 	// Responses
-    for(j = 0; j < commSen[i].num;j ++) {
+    for(j = 0; j < commSen[i].num; j ++) {
       commSen[i].responses[j] = (char *)malloc(sizeof(char) * 64);
       fscanf(fp,"%[^\n]s\n", commSen[i].responses[j]);
       fgetc(fp);
@@ -38,8 +37,18 @@ void commRead() {
 void commWrite() {
 
   FILE *fp;
-  fp = fopen("tempBase.txt","w+");
+  fp = fopen("dataBase.txt","w+");
 
+  fprintf(fp, "%d\n", commSenNum);
+  int i = 0;
+  for(; i < commSenNum; i ++) {
+    fprintf(fp, "%d ", commSen[i].num);
+    fprintf(fp, "%s\n", commSen[i].input);
+	int j = 0;
+	for(; j < commSen[i].num; j ++) {
+	  fprintf(fp, "%s\n", commSen[i].responses[j]);
+	}
+  }
   fclose(fp);
 }
 
@@ -50,23 +59,21 @@ void tempRead() {
   fp= fopen("tempBase.txt","r");
 
   fscanf(fp,"%d\n", &tempSenNum);
-  tempSen= (tBase *)malloc(sizeof(tBase) * tempSenNum * 1.5);
+  tempSen= (tBase *)malloc(sizeof(tBase) * tempSenNum);
 
   int i,j;
-  for(i = 0; i < tempSenNum;i ++) {
+  for(i = 0; i < tempSenNum; i ++) {
     fscanf(fp,"%d ", &tempSen[i].num );
-	  
-    tempSen[i].input = (char *)malloc(sizeof(char) * 64);
 	// Questions
+    tempSen[i].input = (char *)malloc(sizeof(char) * 64);
     fscanf(fp,"%[^\n]s\n", tempSen[i].input);
-    fgetc(fp);
+
 	// Responses
-    for(j = 0; j < tempSen[i].num;j ++) {
-	  fscanf(fp,"%d", &tempSen[i].tResponses[j].times);
-		
+	tempSen[i].tResponses = (tempResp *)malloc(tempSen[i].num * sizeof(tempResp));
+    for(j = 0; j < tempSen[i].num; j ++) {
+	  fscanf(fp,"%d  ", &tempSen[i].tResponses[j].times);
       tempSen[i].tResponses[j].responses = (char *)malloc(sizeof(char) * 64);
       fscanf(fp,"%[^\n]s\n", tempSen[i].tResponses[j].responses);
-      fgetc(fp);
     }
   }
   fclose(fp);
@@ -78,26 +85,45 @@ void tempWrite() {
   FILE *fp;
   fp = fopen("tempBase.txt","w+");
 
+  fprintf(fp, "%d\n", tempSenNum);
+  int i = 0;
+  for(; i < tempSenNum; i ++) {
+    fprintf(fp, "%d ", tempSen[i].num);
+    fprintf(fp, "%s\n", tempSen[i].input);
+	int j = 0;
+	for(; j < tempSen[i].num; j ++) {
+	  fprintf(fp, "%d  ", tempSen[i].tResponses[j].times);
+	  fprintf(fp, "%s\n", tempSen[i].tResponses[j].responses);
+	}
+  }
   fclose(fp);
 }
 
 // Concentrate on freeing commSen and temSen
 void freeAll() {
 
+  free(userInput);
+  free(preUserInput);
   int i,j;
-  for(i = 0; i< commSenNum;i++) {
-    for(j = 0; j < commSen[i].num;j ++) {
-	  free(commSen[i].responses[j]);
-	}
+  for(i = commSenNum - 1; i >= 0; i --) {
+    free(commSen[i].responses);
     free(commSen[i].input);
+    commSen[i].input = NULL;
   }
   free(commSen);
+  commSen = NULL;
 
-  for(i = 0; i< tempSenNum;i++) {
-    for(j = 0; j < tempSen[i].num;j ++) {
+  for(i = tempSenNum - 1; i >= 0; i --) {
+    for(j = tempSen[i].num - 1; j >= 0; j --) {
 	  free(tempSen[i].tResponses[j].responses);
+	  tempSen[i].tResponses[j].responses = NULL;
 	}
-    free(tempSen[i].input);
+	free(tempSen[i].tResponses);
+	tempSen[i].tResponses = NULL;
+	free(tempSen[i].input);
+    tempSen[i].input = NULL; 
   }
   free(tempSen);
+  tempSen = NULL;
+  
 }

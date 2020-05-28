@@ -30,6 +30,11 @@ int main(char *argv[]) {
 	// Enter "BYE" to end the chat
     else if(strncmp(userInput, "BYE", 3) == 0) {
       printf("BYE\n");
+
+      tempWrite();
+      commWrite();
+
+	  //freeAll();
       return 0;
     }
     int choice;
@@ -49,9 +54,5 @@ int main(char *argv[]) {
 	}
   }
   
-  tempWrite();
-  commWrite();
-  
-  freeAll();
 }
   
