@@ -7,19 +7,19 @@
 #include "converse.h"
 #include "storeFile.h"
  
-// Get user's sentences
+// Get user's sentences and print the structure of conversation
 void input() {
 
   printf("\nUSER >");
   // Avoid input is greater than the length of userInput
   fgets(userInput, 30, stdin);
-  trim(userInput);
-  printf("\nBOT >");
+  delSpace(userInput);
+  printf("\nBOT  >");
   upper(userInput);
 }
 
-// Delete space to gain valid words
-char *trim(char *str) {
+// Delete space to gain valid sentences
+char *delSpace(char *str) {
 
   int beg = 0, end = strlen(str)-1;
   // Begin spaces

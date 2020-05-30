@@ -1,4 +1,5 @@
 
+// Contain all functions in match.c
 int commMatch(char *input);
 int compare(int i, char *temp1, char *temp2, int result);
 char *addSpace(char * str);

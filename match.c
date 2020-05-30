@@ -6,7 +6,7 @@
 #include "struct.h"
 #include "match.h"
 
-// Find a match according to input from commSen
+// Find a match according to input from data
 int commMatch(char *input) {
   
   int result = -1;
@@ -49,7 +49,7 @@ char *addSpace(char *str) {
   return newstr;
 }
 
-// Find a match according to input from tempSen
+// Find a match according to input from temp data
 void tempMatch(char *bot, char *user, int result[]) {
   
   char *temp1, *temp2;
@@ -70,7 +70,7 @@ void tempMatch(char *bot, char *user, int result[]) {
   return;
 }
 
-// Keep conversations in tempSen
+// Keep conversations in temp data
 void keepCache(int index, int choice) {
 
   int result[2] = {-1, -1};
@@ -108,7 +108,7 @@ void keepCache(int index, int choice) {
   }
 }
 
-// Add normal conversations into commSen
+// Add normal conversations into data
 void addTemp(int index[]) {
   int result = commMatch(tempSen[index[0]].input);
   if(result == -1) {

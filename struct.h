@@ -1,4 +1,6 @@
 
+// Contain all struct and global variables
+
 #define MAX 999
 #define MAX_RESP 50
 
