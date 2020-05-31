@@ -9,7 +9,7 @@
 #include "storeFile.h"
 
 /*
- *Target：Main function
+ *Target：Main function (BETTER ON LINUX)
  *
  *Author：Dou Bowen
  *
