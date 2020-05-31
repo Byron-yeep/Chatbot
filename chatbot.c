@@ -8,6 +8,14 @@
 #include "match.h"
 #include "storeFile.h"
 
+/*
+ *Target：Main function
+ *
+ *Author：Dou Bowen
+ *
+ *Date：2020/5/31
+*/
+
 int main(char *argv[]) {
 
   // Clear terminal
@@ -19,7 +27,7 @@ int main(char *argv[]) {
   preUserInput = (char *)malloc(sizeof(char)*64);
   
   int index;
-  printf("(ENTER \"BYE\" TO END THE CONVERSATION)\n\nBOT >HI");
+  printf("(ENTER \"BYE\" TO END THE CONVERSATION)\n\nBOT  >HI");
   input();
 
   while(1) {
@@ -34,7 +42,7 @@ int main(char *argv[]) {
       tempWrite();
       commWrite();
 
-	  //freeAll();
+	  freeAll();
       return 0;
     }
     int choice;
@@ -49,7 +57,7 @@ int main(char *argv[]) {
 
     input();
     // keep the conversation of this round
-    if(index != -1) {	  
+    if(index != -1 && strcmp(userInput, "BYE")) {	  
       keepCache(index, choice);
 	}
   }

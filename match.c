@@ -6,6 +6,14 @@
 #include "struct.h"
 #include "match.h"
 
+/*
+ *Target：All functions which match and compare user inputs with sentences in database
+ *
+ *Author：Dou Bowen
+ *
+ *Date：2020/5/31
+*/
+
 // Find a match according to input from data
 int commMatch(char *input) {
   

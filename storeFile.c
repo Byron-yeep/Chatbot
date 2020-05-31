@@ -7,6 +7,14 @@
 #include "match.h"
 #include "storeFile.h"
 
+/*
+ *Target：All functions about files which will be read and written
+ *
+ *Author：Dou Bowen
+ *
+ *Date：2020/5/31
+*/
+
 // Read some conversations from database
 void commRead() {
 
@@ -37,7 +45,7 @@ void commRead() {
 void commWrite() {
 
   FILE *fp;
-  fp = fopen("dataBase.txt","w+");
+  fp = fopen("database.txt","w+");
 
   fprintf(fp, "%d\n", commSenNum);
   int i = 0;
@@ -52,7 +60,7 @@ void commWrite() {
   fclose(fp);
 }
 
-// Read caches into tempBase
+// Read caches into temp data
 void tempRead() {
 
   FILE *fp;
@@ -79,7 +87,7 @@ void tempRead() {
   fclose(fp);
 }
 
-// Write caches into teamBase
+// Write caches into temp data
 void tempWrite() {
 	
   FILE *fp;
@@ -99,30 +107,15 @@ void tempWrite() {
   fclose(fp);
 }
 
-// Concentrate on freeing commSen and temSen
+// Free all malloc memories
 void freeAll() {
 
   free(userInput);
   free(preUserInput);
-  int i,j;
-  for(i = commSenNum - 1; i >= 0; i --) {
-    free(commSen[i].responses);
-    free(commSen[i].input);
-    commSen[i].input = NULL;
-  }
+
   free(commSen);
   commSen = NULL;
 
-  for(i = tempSenNum - 1; i >= 0; i --) {
-    for(j = tempSen[i].num - 1; j >= 0; j --) {
-	  free(tempSen[i].tResponses[j].responses);
-	  tempSen[i].tResponses[j].responses = NULL;
-	}
-	free(tempSen[i].tResponses);
-	tempSen[i].tResponses = NULL;
-	free(tempSen[i].input);
-    tempSen[i].input = NULL; 
-  }
   free(tempSen);
   tempSen = NULL;
   

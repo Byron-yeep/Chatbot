@@ -7,6 +7,14 @@
 #include "converse.h"
 #include "storeFile.h"
  
+/*
+ *Target：All relevant functions about input and output to lead conversation go ahead    
+ *
+ *Author：Dou Bowen
+ *
+ *Date：2020/5/31
+*/
+ 
 // Get user's sentences and print the structure of conversation
 void input() {
 
@@ -66,7 +74,8 @@ int output(int index) {
     printf("YOU'RE REPREATINING YOURSELF, COULD WE TALK SOMETHING ELSE : )");
   }
   else {
-    choice = random() % commSen[index].num;
+	srand(time(0));
+	choice = rand() % commSen[index].num;
     printf("%s", commSen[index].responses[choice]);
   }
   return choice;
